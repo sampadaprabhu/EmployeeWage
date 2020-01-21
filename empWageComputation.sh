@@ -9,6 +9,7 @@ TOTAL_HOURS=100
 TOTAL_DAYS=20
 hours=0
 days=0
+One_Day_Hours=0
 echo "Welcome To Employee Wage"
 getWorkingHours()
 {
@@ -18,15 +19,20 @@ getWorkingHours()
 		((days++))
 		case $random in
 				$isFullTimePresent)
+						One_Day_Hours=$FULL_DAY_HOUR
 						hours=$(( $hours + $FULL_DAY_HOUR ))
 						;;
 				$isPartTimePresent)
+						One_Day_Hours=$PART_TIME_HOUR
 						hours=$(( $hours + $PART_TIME_HOUR ))
 						;;
 		esac
+		dailyWage[$days]=$(($WAGE_PER_HOUR * $One_Day_Hours))
 	done
 }
 getWorkingHours
+
+echo "Daily Wage is: ${dailyWage[@]}"
 Employee_Monthly_Wage=$(( $WAGE_PER_HOUR * $hours ))
 echo "Total of Employee Monthly Wage is: $Employee_Monthly_Wage"
 
