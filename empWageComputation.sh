@@ -10,21 +10,23 @@ TOTAL_DAYS=20
 hours=0
 days=0
 echo "Welcome To Employee Wage"
-while (( $TOTAL_DAYS >= $days && $TOTAL_HOURS >= $hours ))
-do
-	random=$((RANDOM%3))
-	((days++))
-	case $random in
+getWorkingHours()
+{
+	while (( $TOTAL_DAYS >= $days && $TOTAL_HOURS >= $hours ))
+	do
+		random=$((RANDOM%3))
+		((days++))
+		case $random in
 				$isFullTimePresent)
-						
 						hours=$(( $hours + $FULL_DAY_HOUR ))
 						;;
 				$isPartTimePresent)
-						
 						hours=$(( $hours + $PART_TIME_HOUR ))
 						;;
-	esac	 					
-done
+		esac
+	done
+}
+getWorkingHours
 Employee_Monthly_Wage=$(( $WAGE_PER_HOUR * $hours ))
 echo "Total of Employee Monthly Wage is: $Employee_Monthly_Wage"
 
