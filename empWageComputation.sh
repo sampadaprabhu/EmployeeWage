@@ -5,27 +5,26 @@ PART_TIME_HOUR=4
 isFullTimePresent=1
 isPartTimePresent=2
 isAbsent=0
-fullTime=0
-partTime=0
+TOTAL_HOURS=100
+TOTAL_DAYS=20
+hours=0
+days=0
 echo "Welcome To Employee Wage"
-for (( i=0; i<20; i++ ))
+while (( $TOTAL_DAYS >= $days && $TOTAL_HOURS >= $hours ))
 do
 	random=$((RANDOM%3))
+	((days++))
 	case $random in
 				$isFullTimePresent)
-						Employee_Hours=$FULL_DAY_HOUR
-						((fullTime++))
+						
+						hours=$(( $hours + $FULL_DAY_HOUR ))
 						;;
 				$isPartTimePresent)
-						Employee_Hours=$PART_TIME_HOUR
-						((partTime++))
+						
+						hours=$(( $hours + $PART_TIME_HOUR ))
 						;;
-				$isAbsent)
-						echo "Employee is Absent"
-	esac
+	esac	 					
 done
-Employee_Daily_Wage=$(( $WAGE_PER_HOUR * $Employee_Hours ))
-echo "Total of Employee Daily Wage is: $Employee_Daily_Wage"
-Total_Hours=$(( $fullTime * 8 + $partTime * 4 ))
-Wage_For_Month=$(( $Total_Hours * $WAGE_PER_HOUR ))
-echo "Total Wage For Month is: $Wage_For_Month"
+Employee_Monthly_Wage=$(( $WAGE_PER_HOUR * $hours ))
+echo "Total of Employee Monthly Wage is: $Employee_Monthly_Wage"
+
