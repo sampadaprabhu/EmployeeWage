@@ -9,6 +9,7 @@ TOTAL_HOURS=100
 TOTAL_DAYS=20
 hours=0
 days=0
+i=0
 One_Day_Hours=0
 i=0
 echo "Welcome To Employee Wage"
